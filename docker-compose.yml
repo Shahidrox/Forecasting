@@ -1,0 +1,24 @@
+name: 'forecasting-app'
+
+networks:
+  traefik-public:
+    external: false
+
+services:
+  backend:
+    image: 'forecasting:${TAG-v0.1}'
+    build: 
+      context: .
+      dockerfile: app.dockerfile
+    volumes:
+      - ./app:/src
+    networks: 
+      - traefik-public
+    ports:
+      - 8000:8000
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

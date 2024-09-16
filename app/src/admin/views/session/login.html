@@ -1,0 +1,22 @@
+{% extends "layout/base.html" %} {% block outer_body %}
+  <div class="card m-auto mw-400 p-8 w-100">
+    <h2 class="fs-6 text-body-emphasis">Welcome to Forecasting!</h2>
+    <div class="mb-5 text-body-secondary">Please sign in to continue to the system</div>
+      <form class="mb-5" action="{{ url_for('login') }}" method="post">
+      <div class="mb-3 position-relative">
+        <i class="fs-3 left-0 m-2.5 ph ph-user-circle position-absolute text-body-secondary top-0">
+        </i>
+        <input type="text" id="email" name="email" class="form-control ps-10" placeholder="Email">
+      </div>
+      <div class="mb-5 position-relative">
+        <i class="fs-3 left-0 m-2.5 ph ph-keyhole position-absolute text-body-secondary top-0">
+        </i>
+        <input type="password" id="password" name="password" class="form-control ps-10" placeholder="Password">
+      </div>
+      <button type="submit" class="bg-opacity-50 btn btn-dark w-100">Sign In</button>
+    </form>
+    <div class="fs-7 text-center">
+      <a href="/register" class="d-block link-muted mb-2">Register for a new account</a>
+    </div>
+  </div>
+{% endblock %}

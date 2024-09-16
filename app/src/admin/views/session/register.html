@@ -1,0 +1,32 @@
+{% extends "layout/base.html" %} {% block outer_body %}
+<div class="card m-auto mw-400 p-8 w-100">
+  <h2 class="fs-6 text-body-emphasis">Create an account</h2>
+  <div class="mb-5 text-body-secondary">Please fill all the input and submite the form</div>
+  <form id="signupForm" class="mb-5" action="{{ url_for('register') }}" method="post">
+    <div class="mb-3 position-relative">
+      <i class="fs-3 left-0 m-2.5 ph ph-user-circle position-absolute text-body-secondary top-0">
+      </i>
+      <input type="text" id="username" name="username" class="form-control ps-10" placeholder="Username" required>
+    </div>
+    <div class="mb-3 position-relative">
+      <i class="fs-3 left-0 m-2.5 ph ph-at position-absolute text-body-secondary top-0">
+      </i>
+      <input type="email" id="email" name="email" class="form-control ps-10" placeholder="Email Address" required>
+    </div>
+    <div class="mb-3 position-relative">
+      <i class="fs-3 left-0 m-2.5 ph ph-keyhole position-absolute text-body-secondary top-0">
+      </i>
+      <input type="password" id="password" name="password" class="form-control ps-10" placeholder="Password" required>
+    </div>
+    <div class="mb-5 position-relative">
+      <i class="fs-3 left-0 m-2.5 ph ph-keyhole position-absolute text-body-secondary top-0">
+      </i>
+      <input type="password" id="confirm_password" name="confirm_password" class="form-control ps-10" placeholder="Confirm Password" required>
+    </div>
+    <button type="submit" class="btn btn-dark w-100">Create Account</button>
+  </form>
+  <div class="fs-7 text-center">
+    <a href="/login" class="d-block link-muted">Already have an account?</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "layout/application.html" %} {% block outer_body %}
+<div class="content-header">
+  <button type="button" class="d-xl-none icon me-2 ms-n1.5 ph ph-list" id="sidebar-secondary-toggle">
+    <span class="visually-hidden">Toggle Options</span>
+  </button>
+  <div class="text-body-emphasis"> </div>
+  <i class="ms-auto"></i>
+</div>
+
+
+<div class="g-3 lh-1 mb-3 row row-cols-1 row-cols-lg-4 row-cols-sm-2">
+  <div class="col">
+    <div class="card p-5">
+      <label for="inputState" class="form-label">Product</label>
+      <div class="mb-5">
+        <select id="inputState" class="form-select">
+          <option value selected>Choose a product...</option>
+          <option value="rose-essential-gift-box">Rose Essential Gift Box
+          </option>
+          <option value="9-to-5-primer-matte-powder-foundation-compact">9 to 5
+            Primer + Matte Powder Foundation Compact </option>
+          <option value="velvet-matte-lipstick">Velvet Matte Lipstick </option>
+          <option value="safe-sun-3-in-1-matte-look-daily-sunblock-spf-40">Safe
+            Sun 3-In-1 Matte Look Daily Sunblock SPF-40 </option>
+          <option value="ultime-pro-hd-intense-matte-lips-primer">Ultime Pro HD
+            Intense Matte Lips + Primer </option>
+          <option value="infallible-pro-matte-liquid-lipstick">Infallible
+            Pro-Matte Liquid Lipstick </option>
+          <option value="fit-me-matte-poreless-foundation">Fit Me Matte +
+            Poreless Foundation </option>
+          <option value="smudge-me-not-liquid-lipstick">Smudge Me Not Liquid
+            Lipstick </option>
+          <option value="soundarya-radiance-cream-with-24k-gold">Soundarya
+            Radiance Cream With 24K Gold </option>
+          <option value="purifying-neem-face-wash">Purifying Neem Face Wash
+          </option>
+          <option value="bio-papaya-revitalizing-tan-removal-scrub">Bio Papaya
+            Revitalizing Tan-Removal Scrub </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card p-5">
+      <label for="inputState" class="form-label">Train model</label>
+      <div class="mb-5">
+        <input class="form-control" type="file" id="csvFileInput">
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card p-5">
+      <label for="inputState" class="form-label">Download sample sales data
+        CSV</label>
+      <div class="mb-5">
+        <a href="/download_sales_data" class="btn btn-highlight">
+          <i class="ph ph-download"></i> Download CSV
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="g-5 row row-cols-lg-12">
+  <div class="g-col-12 g-col-sm-12 g-col-md-12 g-col-lg-12 g-col-xxl-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="align-items-start d-flex mb-4">
+          <h5 class="card-title flex-grow-1 m-0"> Forecasting </h5>
+        </div>
+        <div class="mb-10">
+          <div class="chart-container">
+            <canvas id="chart-user-acquisition"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="align-items-start d-flex mb-3">
+          <h5 class="card-title flex-grow-1 m-0">Products </h5>
+          <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+            <a href class="icon ph ph-download">
+            </a>
+            <a href class="icon ph ph-info">
+            </a>
+            <a href class="icon ph ph-dots-three-circle">
+            </a>
+          </div>
+        </div>
+        <div id="top-products">
+          {% for product in details %}
+          <a href
+            class="bg-hover border border-transparent d-flex align-items-start py-3 px-3 mx-n3 rounded">
+            <img alt class="w-11 rounded me-4"
+              src="{{url_for('admin', path=product.image) }}">
+            <div class="flex-grow-1 pe-5 text-truncate">
+              <div class="text-body-emphasis mb-1 text-truncate">{{ product.name
+                }}</div>
+              <div class="fs-7 text-body-secondary ts-none">brand: {{
+                product.brand }}</div>
+            </div>
+            <div class="fs-5 text-body-emphasis text-end w-12">
+              <i class="ph ph-star"></i>
+              {{ product.rating }}
+            </div>
+            <div
+              class="badge rounded-pill ms-5 fs-8 text-body-emphasis d-inline-flex align-items-center mt-n1 bg-opacity-50 bg-success">
+              <i class="ph ph-currency-inr fs-4 me-1"></i>
+              {{ product.price }}
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module"
+  src="{{ url_for('admin', path='assets/javascript/custom_chart.js') }}?version={{version}}"></script>
+{% endblock %}

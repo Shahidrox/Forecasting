@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% set version = "1.0.0" %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Forecasting | Login</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('admin', path='assets/stylesheet/main.css') }}?version={{version}}">
+  </head>
+    <body class="align-items-center d-flex p-5" data-sa-theme="6">
+      {% block outer_body %}
+        {% block body %}
+        {% endblock %}
+      {% endblock %}
+    </body>
+</html>

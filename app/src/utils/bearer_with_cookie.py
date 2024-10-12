@@ -30,9 +30,6 @@ class OAuth2PasswordBearerWithCookie(OAuth2):
             # Token is valid, continue with the request
             # Token is invalid or missing, handle accordingly
     """
-        pass
-
-        pass
 
     def __init__(
         self,

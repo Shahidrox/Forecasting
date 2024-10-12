@@ -30,11 +30,11 @@ async def get_db():
     # Log the error and raise an exception
     # Close the database session
   
-  db = Session()
-  try:
-      yield db
-  except Exception as e:
-      logger.error(f"Middleware batabase connection error: {e}")
-      raise
-  finally:
-      db.close()
+    db = Session()
+    try:
+        yield db
+    except Exception as e:
+        logger.error(f"Middleware batabase connection error: {e}")
+        raise
+    finally:
+        db.close()

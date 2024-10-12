@@ -12,7 +12,7 @@ from src.models import ModelInfo, PredictedSale
 
 
 def forecast_product_sales(product_id, product_series, periods=90):
-  model = ARIMA(product_series, order=(6,0,2))  # Adjust order as needed
+  model = ARIMA(product_series, order=(7,0,3))  # Adjust order as needed
   model_fit = model.fit()
   forecast = model_fit.forecast(steps=periods)
   forecast_index = pd.date_range(start=product_series.index[-1] + pd.DateOffset(1), periods=periods, freq='D')
@@ -23,8 +23,8 @@ def forecast_product_sales(product_id, product_series, periods=90):
   model_dir = 'src/data'
   model_path = os.path.join(model_dir, f'arima_model_{product_id}_{today}.pkl')
   
-  # with open(model_path, 'wb') as file:
-  #   pickle.dump(model_fit, file)
+  with open(model_path, 'wb') as file:
+    pickle.dump(model_fit, file)
     
   store_model_info('ARIMA', 'Time Series', model_path)
 

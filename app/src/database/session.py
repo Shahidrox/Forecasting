@@ -44,7 +44,6 @@ def before_cursor_execute(conn, cursor, statement, parameters, context, executem
     print('-------------------------------QUERY START---------------------------')
     conn.info.setdefault('query_start_time', []).append(time.time())
 
-
 @event.listens_for(engine, 'after_cursor_execute')
 def after_cursor_execute(conn, cursor, statement, parameters, context, executemany):
     total_time = time.time() - conn.info['query_start_time'].pop(-1)

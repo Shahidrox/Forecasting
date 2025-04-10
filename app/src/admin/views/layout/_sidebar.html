@@ -1,6 +1,7 @@
 <aside id="sidebar">
   <button type="button" id="sidebar-close" class="icon sidebar-close">
-    <i class="fs-5 ph ph-x"></i><span class="visually-hidden">Close Sidebar</span>
+    <i class="fs-5 ph ph-x"></i><span class="visually-hidden">Close
+      Sidebar</span>
   </button>
 
   <div class="sidebar-header">
@@ -14,17 +15,26 @@
       </div>
       <div class="simplebar-mask">
         <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-          <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
+          <div class="simplebar-content-wrapper" tabindex="0" role="region"
+            aria-label="scrollable content"
+            style="height: 100%; overflow: hidden scroll;">
             <div class="simplebar-content" style="padding: 20px 12px 12px;">
-              <ul class="menu">  <li class="menu-title">Dashboards</li>
-              <li class=" {{ dashboard}}">
-                <a href="/">
-                  <i class="ph ph-chart-line"></i><span>Analytics</span>
-                </a>
-              </li>
-              <li class="menu-title">Application Views</li>
+              <ul class="menu">
+                <li class="menu-title">Dashboards</li>
+                <li class=" {{ dashboard}}">
+                  <a href="/">
+                    <i class="ph ph-chart-line"></i><span>Analytics</span>
+                  </a>
+                </li>
+                <li class=" {{ customer_behaviors}}">
+                  <a href="/customer_behaviors">
+                    <i class="mt-n0.5 ph ph-shopping-bag-open"></i>
+                    <span>Customer Behavior</span>
+                  </a>
+                </li>
+                <li class="menu-title">Application Views</li>
                 <li class="menu-sub {{ users }}">
-                  <a href="">
+                  <a href>
                     <i class="ph ph-user-circle"></i><span>User</span>
                   </a>
                   <ul>
@@ -33,21 +43,24 @@
                     </li>
                   </ul>
                 </li>
-                </ul>
-              </div>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="simplebar-placeholder" style="width: 240px; height: 870px;">
-        </div>
       </div>
-      <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-        <div class="simplebar-scrollbar" style="width: 0px; display: none;">
-        </div>
-      </div>
-      <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
-        <div class="simplebar-scrollbar" style="height: 366px; transform: translate3d(0px, 0px, 0px); display: block;">
-        </div>
+      <div class="simplebar-placeholder" style="width: 240px; height: 870px;">
       </div>
     </div>
-  </aside>
+    <div class="simplebar-track simplebar-horizontal"
+      style="visibility: hidden;">
+      <div class="simplebar-scrollbar" style="width: 0px; display: none;">
+      </div>
+    </div>
+    <div class="simplebar-track simplebar-vertical"
+      style="visibility: visible;">
+      <div class="simplebar-scrollbar"
+        style="height: 366px; transform: translate3d(0px, 0px, 0px); display: block;">
+      </div>
+    </div>
+  </div>
+</aside>

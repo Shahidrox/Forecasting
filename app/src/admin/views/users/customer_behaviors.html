@@ -1,0 +1,408 @@
+{% extends "layout/application.html" %} {% block outer_body %}
+<div class="content-inner">
+  <div class="content-header">
+    <button type="button" class="d-xl-none icon me-2 ms-n1.5 ph ph-list"
+      id="sidebar-secondary-toggle">
+      <span class="visually-hidden">Toggle Options</span>
+    </button>
+    <div class="text-body-emphasis"> </div>
+    <i class="ms-auto"></i>
+  </div>
+
+  <div class="g-3 lh-1 mb-3 row row-cols-1 row-cols-lg-4 row-cols-sm-2">
+    <div class="col">
+      <div class="card p-5">
+        <label for="inputState" class="form-label">Upload data</label>
+        <div class="mb-5">
+          <input class="form-control" type="file"
+            id="csvFileInputForCustomerBehavior">
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card p-5">
+        <label for="inputState" class="form-label">Download E-commerce Customer
+          Behavior CSV</label>
+        <div class="mb-5">
+          <a href="/download/customer_behavior" class="btn btn-highlight">
+            <i class="ph ph-download"></i> Download CSV
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> File informations</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class>
+            <pre id="fileInfo"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="g-col-12 g-col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Head data</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive"
+            id="Headdata"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Gender</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive" id="Gender"></div>
+        </div>
+      </div>
+    </div>
+    <div class="g-col-12 g-col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Age Chart</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div style="text-align: center;" id="AgeChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Gender With Age</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive" id="GenderWithAge"></div>
+        </div>
+      </div>
+    </div>
+    <div class="g-col-12 g-col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Age Chart</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div style="text-align: center;" id="GenderwithAgeChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Gender With
+              Membershiptype</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive" id="GenderWithMembershiptype"></div>
+        </div>
+      </div>
+    </div>
+    <div class="g-col-12 g-col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Gender With Membershiptype
+              Chart</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div style="text-align: center;"
+            id="GenderWithMembershiptypeChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> The member ship between the
+              all values</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive"
+            id="member_ship_between_chartChart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="g-col-12 g-col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> The number for customers for
+              all ages</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div style="text-align: center;"
+            id="The_number_for_customers_for_all_agesChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Gender with City</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive"
+            id="GenderwithCityChart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="g-col-12 g-col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Membership Type</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div style="text-align: center;"
+            id="membership_type_chartChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Number of customers in any
+              membership type</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive"
+            id="NumberofcustomersinanymembershiptypeChart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="g-col-12 g-col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Membership Type and Total
+              Spend</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div style="text-align: center;"
+            id="MembershipTypeandTotalSpendChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Distribution Days Since Last
+              Purchase</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive"
+            id="DistributionDaysSinceLastPurchaseChart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="g-col-12 g-col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Satisfaction Level</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div style="text-align: center;"
+            id="SatisfactionLevelChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Items Purschased with
+              Gender</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive"
+            id="ItemsPurschasedwithGenderChart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="g-col-12 g-col-lg-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Discount Applied with
+              Gender</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div style="text-align: center;"
+            id="DiscountAppliedwithGenderChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-3 grid mb-3">
+    <div class="g-col-12 g-col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="align-items-start d-flex mb-5">
+            <h5 class="card-title flex-grow-1 m-0"> Average Rating with
+              Satisfaction Level</h5>
+            <div class="d-flex gap-1 me-n1.5 mt-n1.5">
+              <a href class="icon ph ph-info"></a>
+            </div>
+          </div>
+          <div class="table-responsive"
+            id="AverageRatingwithSatisfactionLevelChart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module">
+    $('#csvFileInputForCustomerBehavior').on('change', function() {
+      handleCustomerBehaviorCsv();
+    });
+  var handleCustomerBehaviorCsv = function() {
+    var fileInput = document.getElementById('csvFileInputForCustomerBehavior');
+    var file = fileInput.files[0];
+    var formData = new FormData();
+    formData.append('file', file);
+
+    fetch('/upload_customer_behaviors', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        $('#fileInfo').text(data.FileInfo);
+        $('#Headdata').html(data.headData);
+        $('#Gender').html(data.Gender);
+        const genderPieChartSrc = `data:image/png;base64,${data.gender_pie_chart}`;
+        $('#AgeChart').html(`<img width="50%" src="${genderPieChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+
+        $('#GenderWithAge').html(data.GenderwithAge);
+        const GenderwithAgeChartSrc = `data:image/png;base64,${data.GenderwithAgeChart}`;
+        $('#GenderwithAgeChart').html(`<img width="50%" src="${GenderwithAgeChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+
+        $('#GenderWithMembershiptype').html(data.GenderWithMembershiptype);
+        const GenderWithMembershiptypeChartSrc = `data:image/png;base64,${data.GenderWithMembershiptype_chart}`;
+        $('#GenderWithMembershiptypeChart').html(`<img width="50%" src="${GenderWithMembershiptypeChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+
+        const member_ship_between_chartSrc = `data:image/png;base64,${data.member_ship_between_chart}`;
+        const The_number_for_customers_for_all_agesSrc = `data:image/png;base64,${data.The_number_for_customers_for_all_ages}`;
+        $('#member_ship_between_chartChart').html(`<img width="90%" src="${member_ship_between_chartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+        $('#The_number_for_customers_for_all_agesChart').html(`<img width="50%" src="${The_number_for_customers_for_all_agesSrc}" alt="Pie Chart" class="img-fluid"/>`);
+
+        const GenderwithCityChartSrc = `data:image/png;base64,${data.GenderwithCity_chart}`;
+        const membership_type_chartSrc = `data:image/png;base64,${data.membership_type_chart}`;
+        $('#GenderwithCityChart').html(`<img width="70%" src="${GenderwithCityChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+        $('#membership_type_chartChart').html(`<img width="50%" src="${membership_type_chartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+
+        const NumberofcustomersinanymembershiptypeChartSrc = `data:image/png;base64,${data.NumberofcustomersinanymembershiptypeChart}`;
+        const MembershipTypeandTotalSpendChartSrc = `data:image/png;base64,${data.MembershipTypeandTotalSpendChart}`;
+        $('#NumberofcustomersinanymembershiptypeChart').html(`<img width="70%" src="${NumberofcustomersinanymembershiptypeChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+        $('#MembershipTypeandTotalSpendChart').html(`<img width="50%" src="${MembershipTypeandTotalSpendChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+
+        const DistributionDaysSinceLastPurchaseChartSrc = `data:image/png;base64,${data.DistributionDaysSinceLastPurchaseChart}`;
+        const SatisfactionLevelChartSrc = `data:image/png;base64,${data.SatisfactionLevelChart}`;
+        $('#DistributionDaysSinceLastPurchaseChart').html(`<img width="70%" src="${DistributionDaysSinceLastPurchaseChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+        $('#SatisfactionLevelChart').html(`<img width="50%" src="${SatisfactionLevelChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+
+        const ItemsPurschasedwithGenderChartSrc = `data:image/png;base64,${data.ItemsPurschasedwithGenderChart}`;
+        const DiscountAppliedwithGenderChartSrc = `data:image/png;base64,${data.DiscountAppliedwithGenderChart}`;
+        $('#ItemsPurschasedwithGenderChart').html(`<img width="70%" src="${ItemsPurschasedwithGenderChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+        $('#DiscountAppliedwithGenderChart').html(`<img width="50%" src="${DiscountAppliedwithGenderChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+
+        const AverageRatingwithSatisfactionLevelChartSrc = `data:image/png;base64,${data.AverageRatingwithSatisfactionLevelChart}`;
+        $('#AverageRatingwithSatisfactionLevelChart').html(`<img width="70%" src="${AverageRatingwithSatisfactionLevelChartSrc}" alt="Pie Chart" class="img-fluid"/>`);
+        
+        console.log('File uploaded successfully:', data);
+        $('table').addClass('table ');
+      } else {
+        alert('Error uploading file: ' + data.error);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+</script>
+{% endblock %}

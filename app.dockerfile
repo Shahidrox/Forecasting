@@ -18,7 +18,6 @@ COPY ./app /app
 WORKDIR /app/
 
 RUN pip install -r /app/requirements.txt --no-cache-dir
-RUN pip install -i https://pypi.anaconda.org/scientific-python-nightly-wheels/simple statsmodels --upgrade --use-deprecated=legacy-resolver
 
 ENV PYTHONPATH=.
 

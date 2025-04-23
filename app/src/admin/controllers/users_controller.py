@@ -18,10 +18,10 @@ from sqlalchemy.orm import Session
 from src.database import get_db
 from src.models import User
 from src.utils.security import get_current_active_user
-from src.services import user_service, customer_behavior_service
+from src.services import user_service, customer_behavior_service, new_product_forecasting_service
 from src.core.template_setting import templates
 from src.utils.set_timezone import convert_to_ist
-
+from src.serializers.new_product_forecasting_serializer import ProductFeatures
 router = APIRouter()
 
 
@@ -146,3 +146,31 @@ async def download_customer_behaviors(
         media_type="text/csv",
         filename="customer_behaviors.csv",
     )
+
+
+@router.get("/new_product_forecasting")
+async def new_product_forecasting(
+    request: Request, current_user: User = Depends(get_current_active_user)
+):
+    template_vars = {
+        "current_user": current_user,
+        "new_product_forecasting": "active",
+        "cusers": "active",
+        "fields": ProductFeatures.__fields__.keys(),
+        "ProductFeatures": ProductFeatures,
+    }
+    return templates.TemplateResponse(
+        "users/new_product_forecasting.html", {"request": request, **template_vars}
+    )
+    
+@router.post("/get_new_product_forecasting")
+async def get_new_product_forecasting(
+    request: Request,
+    product: ProductFeatures,
+    current_user: User = Depends(get_current_active_user),
+):
+    response = await new_product_forecasting_service.get_new_product_forecasting(product)
+
+    return JSONResponse(content={
+        **response
+    })

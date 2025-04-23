@@ -1,0 +1,84 @@
+{% extends "layout/application.html" %} {% block outer_body %}
+<div class="content-inner">
+    <div class="content-header">
+        <button type="button" class="d-xl-none icon me-2 ms-n1.5 ph ph-list"
+          id="sidebar-secondary-toggle">
+          <span class="visually-hidden">Toggle Options</span>
+        </button>
+        <div class="text-body-emphasis"> </div>
+        <i class="ms-auto"></i>
+    </div>
+
+    <div class="mw-1000 mx-auto w-100">
+      <div class="card mb-3">
+        <div class="card-body" id="form-grid">
+          <h3 class="card-title fs-5">Form grid</h3>
+          <div class="col-md-12">
+            <form id="predictForm" class="align-items-center g-3 row row-cols-lg-auto">
+              <div class="row">
+                {% for field in fields %}
+                  <div class="col-4" style="margin-top: 10px;"> 
+                    <label for="{{ field }}" class="form-label">{{ field.replace('_', ' ') }}:</label>
+                    <input type="number" step="any" name="{{ field }}" class="form-control" value="{{ ProductFeatures.__fields__[field].default }}" required>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="row">
+                <div class="col" style="margin-top: 10px;">
+                  <button type="submit" class="btn btn-secondary">Predict Demand</button>
+                </div>
+              </div>
+            </form> 
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mw-1000 mx-auto w-100">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3 class="card-title fs-5" id="result"></h3> 
+        </div>
+      </div>
+    </div>
+</div>
+<script>
+  const form = document.getElementById('predictForm');
+  const resultDiv = document.getElementById('result');
+
+  form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      formData.forEach((value, key) => {
+          jsonData[key] = parseFloat(value);
+      });
+
+      try {
+          const response = await fetch('/get_new_product_forecasting', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(jsonData)
+          });
+
+          if (!response.ok) {
+              const error = await response.json();
+              resultDiv.innerText = 'Error: ' + error.detail;
+              resultDiv.style.color = 'red';
+              return;
+          }
+
+          const data = await response.json();
+          resultDiv.innerText = `📦 Predicted Demand: ${data.predicted_demand} units (Cluster ${data.cluster})`;
+      } catch (err) {
+          resultDiv.innerText = '⚠️ Request failed. Please try again.';
+          resultDiv.style.color = 'red';
+      }
+  });
+</script>
+
+{% endblock %}

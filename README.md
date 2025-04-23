@@ -36,3 +36,5 @@ Once the containers are up and running, you can access the project through the s
 
 Remember to stop the containers using the `docker-compose down` command when you're done with the project.
 
+
+<!-- find . -type d -name "__pycache__" -exec rm -r {} + -->

@@ -6,7 +6,7 @@ networks:
 
 services:
   backend:
-    image: 'forecasting:${TAG-v0.3}'
+    image: 'forecasting:${TAG-v0.4}'
     build: 
       context: .
       dockerfile: app.dockerfile

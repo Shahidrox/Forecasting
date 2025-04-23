@@ -18,7 +18,7 @@ Note: The session_controller.router and users_controller.router are not included
 api_router = APIRouter()
 
 api_router.include_router(session_controller.router, tags=["views"], include_in_schema=False)
-api_router.include_router(users_controller.router, tags=["views"], include_in_schema=False)
+api_router.include_router(users_controller.router, tags=["views"], include_in_schema=True)
 
 api_router.include_router(test_api.router, tags=["API"])
 api_router.include_router(inventory_forecasting_api.router, tags=["API"])
